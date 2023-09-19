@@ -6,6 +6,7 @@ import 'package:flutter_interim_task/screens/item_screen.dart';
 import 'package:flutter_interim_task/widgets/card_widget.dart';
 import 'package:flutter_interim_task/widgets/status_widget.dart';
 import 'package:flutter_interim_task/bloc/item_details_bloc.dart';
+import 'package:flutter_interim_task/widgets/step_line_widget.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -15,10 +16,10 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  final ValueNotifier<int> orderProgress = ValueNotifier<int>(0);
-  // Function to update order progress
-  void updateOrderProgress(int step) {
-    orderProgress.value = step;
+  @override
+  void initState() {
+    BlocProvider.of<ItemDetailsBloc>(context).add(TrackingSuccessEvent());
+    super.initState();
   }
 
   @override
@@ -122,47 +123,78 @@ class _CartScreenState extends State<CartScreen> {
             const SizedBox(
               height: 20,
             ),
-            StatusWidget(statusUpdate: AppConstants.orderPlaced),
-            Container(
-              decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.grey)),
-              child: const SizedBox(
-                height: 25,
-              ),
-            ),
-            StatusWidget(statusUpdate: AppConstants.payment),
-            const SizedBox(
-              height: 25,
-            ),
-            StatusWidget(statusUpdate: AppConstants.processing),
-            const SizedBox(
-              height: 25,
-            ),
-            StatusWidget(statusUpdate: AppConstants.onTheWay),
-            SizedBox(
-              height: 90,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 55,
-                  top: 10,
-                  bottom: 10,
-                  right: 10,
-                ),
-                child: Text(
-                  AppConstants.pickUpStatus,
-                  style: const TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-              ),
-            ),
-            StatusWidget(statusUpdate: AppConstants.deliver),
+            BlocBuilder<ItemDetailsBloc, ItemDetailsState>(
+              builder: (context, state) {
+                if (state is TrackingSuccessState ||
+                    state is ItemDetailsFinal) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      StatusWidget(
+                          statusUpdate: AppConstants.orderPlaced, step: 1),
+                      // const SizedBox(
+                      //   height: 30,
+                      // ),
+                      // stepVerticalLine(1),
+                      const StepVerticalLine(step: 1),
+                      StatusWidget(statusUpdate: AppConstants.payment, step: 2),
+                      // stepVerticalLine(1),
+                      const StepVerticalLine(step: 2),
+                      StatusWidget(
+                          statusUpdate: AppConstants.processing, step: 3),
+                      // stepVerticalLine(1),
+                      const StepVerticalLine(step: 3),
+                      StatusWidget(
+                          statusUpdate: AppConstants.onTheWay, step: 4),
+                      const StepVerticalLine(step: 4),
+                      SizedBox(
+                        height: 60,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 30,
+                            top: 5,
+                            bottom: 10,
+                            right: 20,
+                          ),
+                          child: Text(
+                            AppConstants.pickUpStatus,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w300,
+                              // fontFamily:
+                            ),
+                          ),
+                        ),
+                      ),
+                      const StepVerticalLine(step: 4),
+                      StatusWidget(statusUpdate: AppConstants.deliver, step: 5),
+                    ],
+                  );
+                } else {
+                  return Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Center(
+                      child: Text(
+                        AppConstants.msg,
+                        style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  );
+                }
+              },
+            )
           ],
         ),
       ),
     );
   }
 }
+
 
 // Route _createRoute() {
 //   return PageRouteBuilder(

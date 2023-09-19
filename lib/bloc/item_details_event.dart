@@ -7,3 +7,7 @@ final class GetItemDetailsEvent extends ItemDetailsEvent {
   final int itemId;
   GetItemDetailsEvent({required this.itemId});
 }
+
+final class TrackingSuccessEvent extends ItemDetailsEvent {
+  TrackingSuccessEvent();
+}

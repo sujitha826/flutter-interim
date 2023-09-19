@@ -138,9 +138,12 @@ class _ItemScreenState extends State<ItemScreen>
                 ), //Column
               );
             } else {
-              return const Center(
-                  child: Text(
-                      'Oops!! The details for the selected item are not available now.'));
+              return Center(
+                child: Text(
+                  AppConstants.detailsNotAvailable,
+                  style: const TextStyle(color: Colors.red, fontSize: 15),
+                ),
+              );
             }
           },
         ),

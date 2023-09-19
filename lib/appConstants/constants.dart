@@ -16,9 +16,12 @@ class AppConstants {
   static String processing = "Processing - 16 April";
   static String onTheWay = "On the way";
   static String pickUpStatus =
-      "Jenifer picked your order, you can contact her any time";
+      "Jenifer has picked your order, you can contact her any time";
   static String deliver = "Deliver";
   static String status = "Status";
-  static String msg = "No Data Available to Show now!!";
+  static String msg =
+      "Order tracking details are not available now!!, Please try after some time.";
+  static String detailsNotAvailable =
+      'Oops!! The details for the selected item are not available now.';
   static String statusHeading = 'STATUS';
 }

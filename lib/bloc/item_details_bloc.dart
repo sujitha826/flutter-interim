@@ -7,10 +7,21 @@ part 'item_details_state.dart';
 
 class ItemDetailsBloc extends Bloc<ItemDetailsEvent, ItemDetailsState> {
   ItemDetailsBloc() : super(ItemDetailsInitial()) {
-    on<ItemDetailsEvent>((event, emit) {});
-    on<GetItemDetailsEvent>((event, emit) {
-      emit(ItemDetailsFinal(itemDetails: getAllDetails(event.itemId)));
+    on<ItemDetailsEvent>((event, emit) {
+      if (event is GetItemDetailsEvent) {
+        emit(ItemDetailsFinal(itemDetails: getAllDetails(event.itemId)));
+      } else if (event is TrackingSuccessEvent) {
+        emit(TrackingSuccessState(success: 'Success'));
+      } else {
+        emit(ItemDetailsInitial());
+      }
     });
+    // on<GetItemDetailsEvent>((event, emit) {
+    //   emit(ItemDetailsFinal(itemDetails: getAllDetails(event.itemId)));
+    // });
+    // on<TrackingSuccessEvent>((event, emit) {
+    //   emit(TrackingSuccess(success: 'Success'));
+    // });
   }
 
   Map<String, String> getAllDetails(int id) {
