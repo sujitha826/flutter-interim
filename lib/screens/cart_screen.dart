@@ -27,7 +27,7 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.onSecondary,
-        title: const Text('Cart'),
+        title: Text(AppConstants.cart),
         leading: const Icon(
           Icons.arrow_back,
         ),
@@ -36,14 +36,11 @@ class _CartScreenState extends State<CartScreen> {
         alignment: Alignment.center,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               height: 250,
               padding: const EdgeInsets.all(10),
-              // decoration: BoxDecoration(
-              //   border: Border.all(width: 0.1),
-              // ),
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
@@ -133,42 +130,55 @@ class _CartScreenState extends State<CartScreen> {
                     children: [
                       StatusWidget(
                           statusUpdate: AppConstants.orderPlaced, step: 1),
-                      // const SizedBox(
-                      //   height: 30,
-                      // ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       // stepVerticalLine(1),
                       const StepVerticalLine(step: 1),
                       StatusWidget(statusUpdate: AppConstants.payment, step: 2),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       // stepVerticalLine(1),
                       const StepVerticalLine(step: 2),
                       StatusWidget(
                           statusUpdate: AppConstants.processing, step: 3),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       // stepVerticalLine(1),
                       const StepVerticalLine(step: 3),
                       StatusWidget(
                           statusUpdate: AppConstants.onTheWay, step: 4),
-                      const StepVerticalLine(step: 4),
-                      SizedBox(
-                        height: 60,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 30,
-                            top: 5,
-                            bottom: 10,
-                            right: 20,
-                          ),
-                          child: Text(
-                            AppConstants.pickUpStatus,
-                            style: const TextStyle(
-                              fontSize: 15,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w300,
-                              // fontFamily:
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          const StepVerticalLine(step: 4),
+                          Expanded(
+                            child: SizedBox(
+                              height: 90,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 35,
+                                  bottom: 10,
+                                  right: 20,
+                                ),
+                                child: Text(
+                                  AppConstants.pickUpStatus,
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    // fontFamily:
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                      const StepVerticalLine(step: 4),
                       StatusWidget(statusUpdate: AppConstants.deliver, step: 5),
                     ],
                   );

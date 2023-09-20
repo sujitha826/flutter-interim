@@ -25,31 +25,34 @@ class CardWidget extends StatelessWidget {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.only(left: 30),
+          padding: const EdgeInsets.only(left: 30, bottom: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  CardDisplay(
-                    text: AppConstants.orderNoText +
-                        AppConstants.orderNo.toString(),
-                    size: 18,
-                    weight: FontWeight.bold,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 25,
-                      left: 45,
+              Expanded(
+                child: Row(
+                  children: [
+                    CardDisplay(
+                      text: AppConstants.orderNoText +
+                          AppConstants.orderNo.toString(),
+                      size: 18,
+                      weight: FontWeight.bold,
                     ),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.more_vert,
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 25,
+                        left: 45,
                       ),
-                    ),
-                  )
-                ],
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.more_vert,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(

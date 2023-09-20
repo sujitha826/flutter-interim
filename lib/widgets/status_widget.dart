@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_interim_task/appConstants/constants.dart';
 
 class StatusWidget extends StatefulWidget {
   const StatusWidget(
@@ -45,18 +44,19 @@ class _StatusWidgetState extends State<StatusWidget>
     // IconData icon = Icons.done;
     // Color colorOfIcon = Colors.blue;
     // if (widget.statusUpdate == AppConstants.deliver) {
-      // icon = Icons.adjust;
-      // colorOfIcon = Colors.grey;
+    // icon = Icons.adjust;
+    // colorOfIcon = Colors.grey;
     // }
     return Visibility(
       visible: isVisible,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // statusTickIcon(icon, colorOfIcon),
           statusNumberIcon(widget.step),
           const SizedBox(
-            width: 5,
+            width: 10,
           ),
           Text(
             widget.statusUpdate,
@@ -117,8 +117,8 @@ Widget statusTickIcon(IconData img, Color col) {
 
 Widget buildStepCircle(int step, Color col) {
   return Container(
-    height: 20,
-    width: 20,
+    height: 25,
+    width: 25,
     decoration: BoxDecoration(
       color: col,
       borderRadius: BorderRadius.circular(15),
@@ -129,13 +129,24 @@ Widget buildStepCircle(int step, Color col) {
 
 Widget buildStepText(int step) {
   return Center(
-    child: Text(
-      step.toString(),
-      style: const TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-        fontSize: 12,
-      ),
-    ),
-  );
+      child: step == 5
+          ? const Icon(
+              Icons.close,
+              color: Colors.white,
+              size: 12,
+            )
+          : const Icon(
+              Icons.done,
+              color: Colors.white,
+              size: 12,
+            )
+      // Text(
+      //   step.toString(),
+      //   style: const TextStyle(
+      //     color: Colors.white,
+      //     fontWeight: FontWeight.bold,
+      //     fontSize: 12,
+      //   ),
+      // ),
+      );
 }

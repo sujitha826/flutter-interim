@@ -48,7 +48,7 @@ class _StepVerticalLineState extends State<StepVerticalLine>
       child: AnimatedBuilder(
         animation: _animationController,
         child: SizedBox(
-          height: 30,
+          height: step == 4 ? 60 : 35,
           child: VerticalDivider(
             color: col,
             thickness: 2,
