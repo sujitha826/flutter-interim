@@ -130,29 +130,21 @@ class _CartScreenState extends State<CartScreen> {
                     children: [
                       StatusWidget(
                           statusUpdate: AppConstants.orderPlaced, step: 1),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      sizedBoxHeight10(),
                       // stepVerticalLine(1),
                       const StepVerticalLine(step: 1),
                       StatusWidget(statusUpdate: AppConstants.payment, step: 2),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      sizedBoxHeight10(),
                       // stepVerticalLine(1),
                       const StepVerticalLine(step: 2),
                       StatusWidget(
                           statusUpdate: AppConstants.processing, step: 3),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      sizedBoxHeight10(),
                       // stepVerticalLine(1),
                       const StepVerticalLine(step: 3),
                       StatusWidget(
                           statusUpdate: AppConstants.onTheWay, step: 4),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      sizedBoxHeight10(),
                       Row(
                         children: [
                           const StepVerticalLine(step: 4),
@@ -205,6 +197,11 @@ class _CartScreenState extends State<CartScreen> {
   }
 }
 
+Widget sizedBoxHeight10() {
+  return const SizedBox(
+    height: 10,
+  );
+}
 
 // Route _createRoute() {
 //   return PageRouteBuilder(

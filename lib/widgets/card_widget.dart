@@ -30,19 +30,21 @@ class CardWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Expanded(
+              Flexible(
                 child: Row(
                   children: [
-                    CardDisplay(
-                      text: AppConstants.orderNoText +
-                          AppConstants.orderNo.toString(),
-                      size: 18,
-                      weight: FontWeight.bold,
+                    Expanded(
+                      child: CardDisplay(
+                        text: AppConstants.orderNoText +
+                            AppConstants.orderNo.toString(),
+                        size: 18,
+                        weight: FontWeight.bold,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
                         top: 25,
-                        left: 45,
+                        left: 20,
                       ),
                       child: IconButton(
                         onPressed: () {},

@@ -76,14 +76,10 @@ class _ItemScreenState extends State<ItemScreen>
                         280,
                         Image.asset(state.itemDetails['itemImage']!),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      sizedBoxWithGivenHeight(10),
                       textDisplay(state.itemDetails['itemRate']!, 19,
                           FontWeight.bold, Colors.black),
-                      const SizedBox(
-                        height: 18,
-                      ),
+                      sizedBoxWithGivenHeight(18),
                       textDisplay(state.itemDetails['itemDetail']!, 15,
                           FontWeight.normal, Colors.black),
                       imageBox(
@@ -106,9 +102,7 @@ class _ItemScreenState extends State<ItemScreen>
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 22,
-                      ),
+                      sizedBoxWithGivenHeight(22),
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
@@ -123,19 +117,16 @@ class _ItemScreenState extends State<ItemScreen>
                               FontWeight.bold, Colors.white),
                         ),
                       ),
-                      const SizedBox(
-                        height: 22,
-                      ),
+                      sizedBoxWithGivenHeight(22),
                       textDisplay(
                         AppConstants.addToCart,
                         17,
                         FontWeight.bold,
                         Colors.blue,
                       )
-                      //SizedBox
                     ],
                   ),
-                ), //Column
+                ),
               );
             } else {
               return Center(
@@ -169,4 +160,10 @@ Widget textDisplay(String text, double size, FontWeight weight, Color col) {
 
 Widget imageBox(double height, double width, Image image) {
   return SizedBox(height: height, width: width, child: image);
+}
+
+Widget sizedBoxWithGivenHeight(double heightValue) {
+  return SizedBox(
+    height: heightValue,
+  );
 }
